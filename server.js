@@ -2,6 +2,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const socketio = require('socket.io');
+const http = require('http');
 
 // require route files
 const exampleRoutes = require('./app/routes/example_routes');
@@ -34,6 +36,10 @@ mongoose.connect(db, {
 
 // instantiate express application object
 const app = express();
+
+// instantiate socket.IO server
+const server = http.createServer(app);
+const io = socketio(server);
 
 // set CORS headers on response from this API using the `cors` NPM package
 // `CLIENT_ORIGIN` is an environment variable that will be set on Heroku
@@ -72,6 +78,15 @@ app.use(userRoutes);
 // note that this comes after the route middlewares, because it needs to be
 // passed any error messages from them
 app.use(errorHandler);
+
+// socket.IO test
+io.on('connection', socket => {
+  console.log('a user connected');
+
+  socket.on('disconnect', () => {
+    console.log('a user has left');
+  });
+});
 
 // run API on designated port (4741 in this case)
 app.listen(port, () => {
