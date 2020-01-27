@@ -24,7 +24,7 @@ const auth = require('./lib/auth');
 // define server and client ports
 // used for cors and local port declaration
 const serverDevPort = 4741;
-const clientDevPort = 3000;
+const clientDevPort = 7165;
 
 // establish database connection
 // use new version of URL parser
@@ -89,7 +89,7 @@ io.on('connection', socket => {
 });
 
 // run API on designated port (4741 in this case)
-app.listen(port, () => {
+server.listen(port, () => {
   console.log('listening on port ' + port);
 });
 
