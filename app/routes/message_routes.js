@@ -49,6 +49,7 @@ router.get('/messages', requireToken, (req, res, next) => {
 router.get('/messages/:id', requireToken, (req, res, next) => {
   // req.params.id will be set based on the `:id` in the route
   Message.findById(req.params.id)
+    .populate('owner')
     .then(handle404)
     // if `findById` is succesful, respond with 200 and "message" JSON
     .then(message => res.status(200).json({ message: message.toObject() }))
