@@ -90,6 +90,26 @@ io.on('connection', socket => {
     io.emit('newMessage', msg);
   });
 
+  socket.on('client join chatroom', room => {
+    socket.join(room);
+    console.log('user joined chat channel: ' + room);
+    // TODO: Not sure if we need this - does front end need a response when successfully joined channel?
+    io.emit('server joined chatroom', 'You are now in chat channel: ' + room);
+  });
+
+  socket.on('client send chatroom message', room => {
+    console.log('sending message to chatroom');
+    // TODO: on the frontend, make it refresh chatroom (get new comments)
+    io.sockets.in(room).emit('server received chatrooom message');
+  });
+
+  socket.on('client leave chatroom', room => {
+    console.log('user is leaving room');
+    socket.leave(room);
+    // TODO: send this only to chatroom, MVP+ say "{user} has left the room"
+    io.emit('user left chatroom');
+  });
+
   socket.on('disconnect', () => {
     console.log('a user has left');
   });
