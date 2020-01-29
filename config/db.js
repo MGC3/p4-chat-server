@@ -2,10 +2,10 @@
 
 // creating a base name for the mongodb
 // DB with chatrooms and messages
-// const mongooseBaseName = 'p4-chat-server-chatroom';
+const mongooseBaseName = 'p4-chat-server-chatroom';
 
 // DB with just messages
-const mongooseBaseName = 'p4-chat-server';
+// const mongooseBaseName = 'p4-chat-server';
 
 // create the mongodb uri for development and test
 const database = {
