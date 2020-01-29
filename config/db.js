@@ -1,8 +1,12 @@
 'use strict';
 
 // creating a base name for the mongodb
+
+// DB with chatrooms and messages...part 2 (add screennames directly to messages)
+const mongooseBaseName = 'p4-chat-server-chatroom-screennames';
+
 // DB with chatrooms and messages
-const mongooseBaseName = 'p4-chat-server-chatroom';
+// const mongooseBaseName = 'p4-chat-server-chatroom';
 
 // DB with just messages
 // const mongooseBaseName = 'p4-chat-server';

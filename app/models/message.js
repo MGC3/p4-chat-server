@@ -1,8 +1,13 @@
 const mongoose = require('mongoose');
+const userSchema = require('./user');
 
 const messageSchema = new mongoose.Schema(
   {
     text: {
+      type: String,
+      required: true
+    },
+    screenName: {
       type: String,
       required: true
     },

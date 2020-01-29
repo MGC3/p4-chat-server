@@ -30,4 +30,7 @@ const userSchema = new mongoose.Schema(
   }
 );
 
+// TODO: update imports everywhere else, after copying this:
+// for getting screennames on to messages, if going mongo way
+// module.exports = messageSchema;
 module.exports = mongoose.model('User', userSchema);
