@@ -8,6 +8,7 @@ const http = require('http');
 // require route files
 const exampleRoutes = require('./app/routes/example_routes');
 const userRoutes = require('./app/routes/user_routes');
+const chatRoomRoutes = require('./app/routes/chatroom_routes');
 const messageRoutes = require('./app/routes/message_routes');
 
 // require middleware
@@ -75,6 +76,7 @@ app.use(requestLogger);
 app.use(exampleRoutes);
 app.use(userRoutes);
 app.use(messageRoutes);
+app.use(chatRoomRoutes);
 
 // register error handling middleware
 // note that this comes after the route middlewares, because it needs to be
