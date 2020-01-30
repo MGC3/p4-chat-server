@@ -95,7 +95,7 @@ io.on('connection', socket => {
 
   socket.on('send chat message', room => {
     console.log('sending message to chatroom');
-    io.to(room).emit('new chat message');
+    io.broadcast.to(room).emit('new chat message');
   });
 
   socket.on('leave chatroom', room => {
