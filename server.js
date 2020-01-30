@@ -95,13 +95,13 @@ io.on('connection', socket => {
 
   socket.on('send chat message', room => {
     console.log('sending message to chatroom');
-    io.broadcast.to(room).emit('new chat message');
+    socket.broadcast.to(room).emit('new chat message');
   });
 
   socket.on('leave chatroom', room => {
     console.log('user is leaving room');
     socket.leave(room);
-    io.to(room).emit('user left chatroom');
+    socket.to(room).emit('user left chatroom');
   });
 
   socket.on('disconnect', () => {
