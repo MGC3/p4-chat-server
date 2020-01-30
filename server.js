@@ -90,7 +90,7 @@ io.on('connection', socket => {
   socket.on('join chatroom', room => {
     socket.join(room);
     console.log('user joined room');
-    io.emit('join success');
+    socket.broadcast.to(room).emit('join success');
   });
 
   socket.on('send chat message', room => {
