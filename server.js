@@ -88,8 +88,11 @@ io.on('connection', socket => {
 
   const countClientsRoom = room => {
     // logic attrib to: https://github.com/googlecodelabs/webrtc-web/issues/5
-    const clientsObj = io.nsps['/'].adapter.rooms[room].sockets;
-    let numClients = Object.keys(clientsObj).length;
+    const clientsInRoom = io.nsps['/'].adapter.rooms[room];
+    const numClients =
+      clientsInRoom === undefined
+        ? 0
+        : Object.keys(clientsInRoom.sockets).length;
     io.to(room).emit('count', numClients);
   };
 
