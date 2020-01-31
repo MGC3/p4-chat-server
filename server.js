@@ -83,29 +83,38 @@ app.use(chatRoomRoutes);
 // passed any error messages from them
 app.use(errorHandler);
 
-// socket.IO test
 io.on('connection', socket => {
   console.log('a user connected');
 
+  const countClientsRoom = room => {
+    // logic attrib to: https://github.com/googlecodelabs/webrtc-web/issues/5
+    const clientsObj = io.nsps['/'].adapter.rooms[room].sockets;
+    let numClients = Object.keys(clientsObj).length;
+    io.to(room).emit('count', numClients);
+  };
+
   socket.on('join chatroom', room => {
     socket.join(room);
-    console.log('user joined room');
+    countClientsRoom(room, socket);
     socket.broadcast.to(room).emit('join success');
   });
 
   socket.on('send chat message', room => {
-    console.log('sending message to chatroom');
     socket.broadcast.to(room).emit('new chat message');
   });
 
   socket.on('leave chatroom', room => {
-    console.log('user is leaving room');
-    socket.leave(room);
+    countClientsRoom(room, socket);
     socket.to(room).emit('user left chatroom');
+    socket.leave(room);
+  });
+
+  socket.on('request count', room => {
+    countClientsRoom(room, socket);
   });
 
   socket.on('disconnect', () => {
-    console.log('a user has left');
+    io.emit('user force dc');
   });
 });
 
