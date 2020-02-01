@@ -41,7 +41,7 @@ The backend for this app can be found in the following repo: [p4-chat-client](ht
 ## Entity Relationship Diagram
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/MGC3/p4-chat-client/master/documentation/erd-p4-chat-app.png" width=300>
+  <img src="https://raw.githubusercontent.com/MGC3/p4-chat-server/master/documentation/erd-p4-chat-app.png" width=300>
 </p>
 
 ## Planning, Development and Problem Solving Strategy
